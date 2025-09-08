@@ -5,6 +5,13 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import authRoute from "./src/routes/authRoute.js"
+import workExperienceRoute from "./src/routes/workExperienceRoute.js";
+import skillRoute from "./src/routes/skillRoute.js"
+import projectRoute from "./src/routes/projectRoute.js"
+import awardRoute from "./src/routes/awardRoute.js"
+import extraCurricularRoute from "./src/routes/extraCurricularRoute.js";
+import socialRoute from "./src/routes/socialRoute.js"
+import publicationRoute from "./src/routes/publicationRoute.js"
 
 const app = express();
 dotenv.config({ path: './src/config/.env' });
@@ -27,6 +34,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/auth", authRoute);
+app.use("/users", workExperienceRoute);
+app.use("/users", skillRoute);
+app.use("/users", projectRoute);
+app.use("/users", awardRoute);
+app.use("/users", extraCurricularRoute)
+app.use("/users", socialRoute);
+app.use("/users", publicationRoute);
 
 app.get("/", (req, res) => {
   res.send("Healthcheck: uply");

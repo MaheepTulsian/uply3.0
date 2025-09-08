@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 const generateAccessAndRefreshTokens = async (id) => {
   try {
@@ -21,7 +22,6 @@ const generateAccessAndRefreshTokens = async (id) => {
 export const signup = async (req,res) => {
 
     try{
-        console.log("1111111");
         const {email, password} = req.body;
         const userExists = await User.findOne({email});
         if(userExists){
@@ -29,7 +29,6 @@ export const signup = async (req,res) => {
         }
         
         const user = await User.create({email, password});
-        console.log("2222222");
 
         return res.status(201).json({
             email: user.email
@@ -127,3 +126,4 @@ export const refreshAccessToken = async (req, res) => {
         return res.status(401).json({ message: "Invalid or expired refresh token" });
     }
 }
+
